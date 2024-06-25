@@ -33,7 +33,6 @@ const CustomFormLabel = ({
   onCheckboxChange,
   activeValue,
 }) => {
-  console.log("8888",activeValue)
   return (
     <div>
       <FormControl mb={3}>
