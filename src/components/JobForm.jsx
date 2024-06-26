@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Box } from "@chakra-ui/react";
+import { Button, Box, VStack, HStack } from "@chakra-ui/react";
 import CustomFormLabel from "./CustomFormLabel";
 
 const JobForm = ({ data, getFormData, onClose }) => {
@@ -38,6 +38,25 @@ const JobForm = ({ data, getFormData, onClose }) => {
       experience: value,
     }));
   };
+  const handleJobTypeChange = (field,value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: {
+        ...prevData[field],
+        desc: value,
+      },
+    }));
+    
+  };
+  const handlelabelChange = (field,value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [field]: {
+        ...prevData[field],
+        desc: value,
+      },
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,8 +65,11 @@ const JobForm = ({ data, getFormData, onClose }) => {
   };
 
   return (
-    <Box>
-      <form onSubmit={handleSubmit}>
+    <VStack>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column" }}
+      >
         <CustomFormLabel
           checkboxPresent
           defaultCheck
@@ -162,11 +184,37 @@ const JobForm = ({ data, getFormData, onClose }) => {
             handleCheckboxChange("jobLocation", e.target.checked)
           }
         />
-        <Button type="submit" colorScheme="blue">
-       {data ? "Edit Job": "Create Job"}
+        <HStack>
+          <CustomFormLabel
+            checkboxPresent
+            defaultCheck
+            jobType
+            value={formData.jobType}
+            onChange={(value) => handleJobTypeChange("jobType", value)}
+            checkboxValue={formData.jobType.checked}
+            onCheckboxChange={(e) =>
+              handleCheckboxChange("jobType", e.target.checked)
+            }
+          />
+         
+          <CustomFormLabel
+            checkboxPresent
+            defaultCheck
+            labelType
+            value={formData.label}
+            onChange={(value) => handlelabelChange("label", value)}
+            checkboxValue={formData.label.checked}
+            onCheckboxChange={(e) =>
+              handleCheckboxChange("label", e.target.checked)
+            }
+          />
+        </HStack>
+
+        <Button type="submit" colorScheme="blue" alignSelf="flex-end">
+          {data ? "Edit Job" : "Create Job"}
         </Button>
       </form>
-    </Box>
+    </VStack>
   );
 };
 
@@ -208,7 +256,15 @@ const initialData = {
   conclusion: {
     desc: "",
     checked: true,
-  }
+  },
+  jobType: {
+    desc: "Full-Time",
+    checked: true,
+  },
+  label: {
+    desc: "Remote",
+    checked: true,
+  },
 };
 
 export default JobForm;
