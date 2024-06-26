@@ -1,8 +1,23 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+JOB CREATION APP (https://handysolver00job00creation.netlify.app/).
 
 ## Available Scripts
+Key points:
+
+- Create a new job profile clicking on the add new job button 
+- New create job will get added to job array and will show in badges with  job number
+-You can also edit the job by just clicking on the particular created job 
+-you can also create a dublicate job profile and delete the same as well by clicking on the setting icon on the top right corner of the created job modal
+
+
+JOB CARDS:
+
+- It will only reflects those headings that has been checked during creation , you can also also the check status through editing
+
+
+
+
 
 In the project directory, you can run:
 

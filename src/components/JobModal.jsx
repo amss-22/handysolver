@@ -19,9 +19,18 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 
-const PopeOver = ({ onDuplicate, onDelete }) => {
+const PopeOver = ({ onDuplicate, onDelete, modalClose }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstFieldRef = React.useRef(null);
+
+const Dublicate=()=>{
+  onDuplicate()
+  modalClose()
+}
+const Delete=()=>{
+  onDelete()
+  modalClose()
+}
 
   return (
     <Popover
@@ -43,13 +52,13 @@ const PopeOver = ({ onDuplicate, onDelete }) => {
       <PopoverContent p={5} ml={5} width="13rem" mt="3rem">
         <HStack>
           <CopyIcon />
-          <Button colorScheme="teal" variant="ghost" onClick={onDuplicate}>
+          <Button colorScheme="teal" variant="ghost" onClick={Dublicate} >
             <Text>DUPLICATE</Text>
           </Button>
         </HStack>
         <HStack>
           <DeleteIcon />
-          <Button colorScheme="teal" variant="ghost" onClick={onDelete}>
+          <Button colorScheme="teal" variant="ghost" onClick={Delete}>
             <Text>DELETE</Text>
           </Button>
         </HStack>
@@ -74,6 +83,7 @@ const JobModal = ({ data, i, getFormData, onDuplicate, onDelete }) => {
               <PopeOver
                 onDuplicate={() => onDuplicate(data)}
                 onDelete={() => onDelete(data.id)}
+                modalClose={onClose}
               />
             </HStack>
           </ModalHeader>
